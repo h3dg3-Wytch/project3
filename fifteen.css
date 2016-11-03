@@ -1,0 +1,54 @@
+#grid{
+	width: 400px;
+	height: 400px;
+	margin: 20%;
+}
+
+.imageTile{
+	position: relative;
+	float: left;
+}
+
+.image{
+	position: absolute;
+	width: 96px;
+	height: 96px;
+	border: 2px black solid;
+	background-color: white;
+	
+}
+.numberImage{
+	position: relative;
+	width: 96px;
+	height: 96px;
+	border: 2px black solid;
+	background-color: white;
+	opacity: .2;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 100px
+}
+
+*{
+	font-size: 32pt;
+	font-family: Sans-Serif;
+}
+
+body{
+	background: url("images/background.jpg") no-repeat center center fixed; 
+	webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+}
+
+#container{
+
+	margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+
+}
+
+
