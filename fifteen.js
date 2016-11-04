@@ -4,9 +4,7 @@ $(document).ready(function(){
 
 	//We don't allow users to click the buttons, until they start the game
 	var shuffledClick = false;
-
-	getPositionOfLastElement(board);
-
+	var solved = false;
 
 	//Creates board, and then draw tiles
 	$("#shuffle").click(function(){
@@ -23,9 +21,11 @@ $(document).ready(function(){
 		}else if(event.type == "mouseout"){
 			//reset the class
 			$(this).css({'color' : "", 'text-decoration': "", "opacity": ".2" });
-		}else{
+		}else if(event.type == "click"){
 			if(shuffledClick){
 				board = checkAnswer(board, $(this).attr("id"));
+				drawTiles(board);
+				//check answer
 			}
 		}
 	});
@@ -37,25 +37,55 @@ function checkAnswer(board, tileId){
 			if(board[i][j].index == tileId){
 				var x = $("#" + tileId).css('backgroundPositionY');
 				var y = $("#" + tileId).css('backgroundPositionX');
+
+				board = checkSwap(board, x, y, i, j, tileId);
+
 				//check swap
 				//Todo implement math to check the position and such
-				checkswap(board, x, y, i, j, tileId);
+				//checkswap(board, x, y, i, j, tileId);
 			}
 		}
 	}
 
-	return result;
+	return board;
+}
+
+function checkSwap(array, x, y, i, j, tileId){
+	var blankTilePosition = getPositionOfLastElement(array);
+	//calculate the distance of the selected tile to the blank tile
+	var distanceFromBlankTile = distance(array[blankTilePosition.i][blankTilePosition.j].x,
+	 array[blankTilePosition.i][blankTilePosition.j].y,
+	 array[i][j].x,
+	 array[i][j].y); 
+	if(distanceFromBlankTile == 100 && tileId != ((array.length * array.length) - 1 )){
+		console.log("Can swap!");
+		array[i][j].index = ((array.length * array.length) - 1 );
+		array[blankTilePosition.i][blankTilePosition.j].index = parseInt(tileId);
+
+		// array[i][j].index =   ((array.length * array.length) - 1 );
+	}
+
+	return array;
+}
+
+function distance(x1, y1, x2, y2){
+	var math = Math.sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) );
+	return math;	
 }
 
 function getPositionOfLastElement(board){
 
+	var result = new Object;
+
 	for(var i = 0 ; i < board.length; i++){
 		for(var j = 0; j < board.length; j++){
 			if(board[i][j].index == ((board.length * board.length) -1) ){
-				console.log(board[i][j].index);	
+				result.i = i;
+				result.j = j;
 			}
 		}
 	}
+	return result;
 
 }
 
