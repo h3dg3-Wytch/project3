@@ -1,7 +1,10 @@
 #grid{
 	width: 400px;
 	height: 400px;
-	margin: 20%;
+	float: center;
+	left: 50%;
+	top: 50%;
+
 }
 
 .imageTile{
@@ -44,11 +47,17 @@ body{
 
 #container{
 
-	margin: auto;
+	margin: 0 auto;
+    height: auto;
     width: 50%;
-    padding: 10px;
+   
     text-align: center;
+    position: relative;
 
+}
+
+#shuffle{
+	margin: 10px;
 }
 
 
