@@ -1,0 +1,12 @@
+GIT CHEAT SHEET
+Follow this order to minimize chance of merge errors
+
+git add .
+git commit -m "What you did, in present tense"
+
+git status (To make sure everything is ok)
+
+git pull -r origin master
+git push origin master
+
+
