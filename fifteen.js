@@ -24,6 +24,7 @@ $(document).ready(function(){
 		}else if(event.type == "click"){
 			if(shuffledClick){
 				board = checkAnswer(board, $(this).attr("id"));
+				console.log(board);
 				drawTiles(board);
 				//check answer
 			}
@@ -39,7 +40,7 @@ function checkAnswer(board, tileId){
 				var y = $("#" + tileId).css('backgroundPositionX');
 
 				board = checkSwap(board, x, y, i, j, tileId);
-
+				return board;
 				//check swap
 				//Todo implement math to check the position and such
 				//checkswap(board, x, y, i, j, tileId);
