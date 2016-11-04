@@ -8,21 +8,31 @@ $(document).ready(function(){
 		drawTiles(board);
 	});
 
-	//todo generate auto add alerts
-	$("#grid").on("click, mouseover", "#0, #1, #2, #3, #4, #5, #6, #7, #8, #9, #10, #11, #12, #13, #14, #15", function(){
-		if(event.type == "mouseover"){
-			alert("Mouse");
-		}
 
-		//alert($(this).attr('id'));
+	//todo generate auto add alerts
+	$("#grid").on("click mouseleave mouseover", "#0, #1, #2, #3, #4, #5, #6, #7, #8, #9, #10, #11, #12, #13, #14, #15", function(){
+		if(event.type == "mouseover"){
+			$(this).css({'color' : "green", 'text-decoration': "underline", "opacity": ".6" });
+		}else if(event.type == "mouseout"){
+			//reset the class
+			$(this).css({'color' : "", 'text-decoration': "", "opacity": ".2" });
+		}else{
+
+		}
 	});
+
 	
+	
+	
+
 	
 
 
 
 
 });
+
+
 
 
 function assignListeners(){
