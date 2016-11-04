@@ -2,8 +2,13 @@ $(document).ready(function(){
 
 	var board = setUpBoard();
 
+	//We don't allow users to click the buttons, until they start the game
+	var shuffledClick = false;
+
+
 	//Creates board, and then draw tiles
 	$("#shuffle").click(function(){
+		shuffledClick = true;
 		board = randomizeGrid(board);
 		drawTiles(board);
 	});
@@ -17,21 +22,27 @@ $(document).ready(function(){
 			//reset the class
 			$(this).css({'color' : "", 'text-decoration': "", "opacity": ".2" });
 		}else{
-
+			if(shuffledClick){
+				board = checkAnswer(board, $(this).attr("id"));
+			}
 		}
 	});
-
-	
-	
-	
-
-	
-
-
-
-
 });
 
+function checkAnswer(board, tileId){
+	for(var i = 0 ; i < board.length; i++){
+		for(var j = 0; j < board.length; j++){
+			if(board[i][j].index == tileId){
+				var x = $("#" + tileId).css('backgroundPositionY');
+				var y = $("#" + tileId).css('backgroundPositionX');
+				console.log(x);
+				console.log(y);
+			}
+		}
+	}
+
+	return result;
+}
 
 
 
@@ -109,7 +120,6 @@ function imageTile(index, locX, locY){
 	container.addClass("imageTile");
 
 	
-	container.css("background-position", locX + "px " + locY + "px");
 	
 
 	if(index != 15){
@@ -124,6 +134,8 @@ function imageTile(index, locX, locY){
 	var numberDiv = $("<div>"+ (index + 1) + "</div>")
 	numberDiv.addClass("numberImage");
 	numberDiv.attr('id', index);
+	numberDiv.css("background-position", locX + "px " + locY + "px");
+	
 
 	container.append(numberDiv);
 	return container;
@@ -131,7 +143,7 @@ function imageTile(index, locX, locY){
 
 function generateRandomArray(){
 	var result = [];
-    for(var i = 0; i < 16; i++){
+    for(var i = 0; i < 16	; i++){
       	result[i] = i;
     } 
 
