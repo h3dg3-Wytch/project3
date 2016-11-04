@@ -63,12 +63,8 @@ function checkAnswer(board, tileId){
 			if(board[i][j].index == tileId){
 				var x = $("#" + tileId).css('backgroundPositionY');
 				var y = $("#" + tileId).css('backgroundPositionX');
-
 				board = checkSwap(board, x, y, i, j, tileId);
 				return board;
-				//check swap
-				//Todo implement math to check the position and such
-				//checkswap(board, x, y, i, j, tileId);
 			}
 		}
 	}
@@ -88,7 +84,6 @@ function checkSwap(array, x, y, i, j, tileId){
 		array[i][j].index = ((array.length * array.length) - 1 );
 		array[blankTilePosition.i][blankTilePosition.j].index = parseInt(tileId);
 	}
-
 	return array;
 }
 
@@ -98,9 +93,7 @@ function distance(x1, y1, x2, y2){
 }
 
 function getPositionOfLastElement(board){
-
 	var result = new Object;
-
 	for(var i = 0 ; i < board.length; i++){
 		for(var j = 0; j < board.length; j++){
 			if(board[i][j].index == ((board.length * board.length) -1) ){
@@ -110,16 +103,6 @@ function getPositionOfLastElement(board){
 		}
 	}
 	return result;
-
-}
-
-function assignListeners(){
-	for(var i = 0; i < 16; i++){
-		$("#grid").on("click", "#"+ toString(i), function(){
-			alert(i);
-	
-		});
-	}
 }
 
 function setUpBoard(){
@@ -153,8 +136,7 @@ function createGrid(){
 
 //Randomizes the grid
 function randomizeGrid(array){
-	var randomIndexs = generateRandomArray();
-	
+	var randomIndexs = generateRandomArray();	
 	var randomIndex = 0;
 	for(var i = 0; i < 4; i++){
 		for(var j = 0; j < 4; j++){
@@ -162,10 +144,8 @@ function randomizeGrid(array){
 			randomIndex++;
 		}
 	}
-
 	return array;
 }
-
 function drawTiles(board){
 	//Takes each item from grid, then adds the new index
 	$("#grid").html("");
@@ -179,16 +159,10 @@ function drawTiles(board){
 }
 
 function imageTile(index, locX, locY){
-
 	var div = $("<div></div>");
 	div.addClass("")
 	var container = $("<div></div>");
-
 	container.addClass("imageTile");
-
-	
-	
-
 	if(index != 15){
 		var imageDiv = $("<div></div>");
 		imageDiv.addClass("image");
@@ -202,25 +176,19 @@ function imageTile(index, locX, locY){
 	numberDiv.addClass("numberImage");
 	numberDiv.attr('id', index);
 	numberDiv.css("background-position", locX + "px " + locY + "px");
-	
-
 	container.append(numberDiv);
 	return container;
 }
-
 function generateRandomArray(){
 	var result = [];
     for(var i = 0; i < 16	; i++){
       	result[i] = i;
     } 
-
     result.sort(function() {
       return Math.random() - .5;
     });
-
     return result;
 }
-
 function isSolved(board){
 	var index = 0;
 	for(var i = 0; i < board.length; i++){
@@ -234,5 +202,3 @@ function isSolved(board){
 	}
 	return true;
 }
-
-
