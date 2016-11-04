@@ -5,6 +5,8 @@ $(document).ready(function(){
 	//We don't allow users to click the buttons, until they start the game
 	var shuffledClick = false;
 
+	getPositionOfLastElement(board);
+
 
 	//Creates board, and then draw tiles
 	$("#shuffle").click(function(){
@@ -45,11 +47,17 @@ function checkAnswer(board, tileId){
 	return result;
 }
 
-function getPositionOfLastElement(){
+function getPositionOfLastElement(board){
+
+	for(var i = 0 ; i < board.length; i++){
+		for(var j = 0; j < board.length; j++){
+			if(board[i][j].index == ((board.length * board.length) -1) ){
+				console.log(board[i][j].index);	
+			}
+		}
+	}
 
 }
-
-
 
 function assignListeners(){
 	for(var i = 0; i < 16; i++){
