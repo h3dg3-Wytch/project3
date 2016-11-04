@@ -9,36 +9,30 @@ $(document).ready(function(){
 	});
 
 	//todo generate auto add alerts
-	$("#grid").on("click", "#0", function(){
-		alert("0");
+	$("#grid").on("click, mouseover", "#0, #1, #2, #3, #4, #5, #6, #7, #8, #9, #10, #11, #12, #13, #14, #15", function(){
+		if(event.type == "mouseover"){
+			alert("Mouse");
+		}
+
+		//alert($(this).attr('id'));
 	});
-	$("#grid").on("click", "#1", function(){
-		alert("1");
-	});
-	$("#grid").on("click", "#2", function(){
-		alert("2");
-	});
-	$("#grid").on("click", "#3", function(){
-		alert("3");
-	});
-	$("#grid").on("click", "#4", function(){
-		alert("4");
-	});
-	$("#grid").on("click", "#5", function(){
-		alert("5");
-	});
-	$("#grid").on("click", "#6", function(){
-		alert("6");
-	});
-	$("#grid").on("click", "#7", function(){
-		alert("7");
-	});
+	
+	
 
 
 
 
 });
 
+
+function assignListeners(){
+	for(var i = 0; i < 16; i++){
+		$("#grid").on("click", "#"+ toString(i), function(){
+			alert(i);
+	
+		});
+	}
+}
 
 function setUpBoard(){
 	board = createGrid();
