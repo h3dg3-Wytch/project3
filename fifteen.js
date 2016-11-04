@@ -35,13 +35,18 @@ function checkAnswer(board, tileId){
 			if(board[i][j].index == tileId){
 				var x = $("#" + tileId).css('backgroundPositionY');
 				var y = $("#" + tileId).css('backgroundPositionX');
-				console.log(x);
-				console.log(y);
+				//check swap
+				//Todo implement math to check the position and such
+				checkswap(board, x, y, i, j, tileId);
 			}
 		}
 	}
 
 	return result;
+}
+
+function getPositionOfLastElement(){
+
 }
 
 
